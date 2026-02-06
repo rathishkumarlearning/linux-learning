@@ -67,7 +67,9 @@ $ ls -lt
 $ ls -lah
 \`\`\`
 
-> 💡 **Tip:** Hidden files in Linux start with a dot (.). Your configuration files are usually hidden!
+<tip>
+💡 Hidden files in Linux start with a dot (.). Your configuration files are usually hidden!
+</tip>
 
 ## Understanding ls -l Output
 
@@ -85,7 +87,16 @@ drwxr-xr-x 2 user group 4096 Jan 15 10:30 Documents
 └── File type (d=directory, -=file, l=link)
 \`\`\`
 
-> ⚠️ **Warning:** Never run commands you don't understand, especially as root!
+<warning>
+⚠️ Never run commands you don't understand, especially as root!
+</warning>
+
+### Practice Exercises
+
+1. **Navigate the filesystem**: Use \`ls -la /\` to list the root directory. Identify 5 directories and describe their purpose.
+2. **Read ls -l output**: Run \`ls -l\` in your home directory and identify the owner, group, permissions, and size of each item.
+3. **Find hidden files**: Use \`ls -a\` to find hidden files in your home directory. What do \`.bashrc\` and \`.profile\` do?
+4. **Practice commands**: Navigate to \`/var/log\`, list the contents sorted by modification time (\`ls -lt\`), and find the most recently modified log file.
           `
         },
         {
@@ -163,7 +174,9 @@ $ cd /etc/sys[TAB][TAB]
 sysctl.conf  sysctl.d/  systemd/
 \`\`\`
 
-> 💡 **Pro Tip:** Double-tap Tab to see all possible completions when there are multiple matches.
+<tip>
+💡 Double-tap Tab to see all possible completions when there are multiple matches.
+</tip>
 
 ## Practical Examples
 
@@ -205,8 +218,16 @@ $ popd
 $ dirs
 \`\`\`
 
-> ⚠️ **Common Mistake:** Spaces in directory names need escaping or quotes:
-> \`cd My\\ Documents\` or \`cd "My Documents"\`
+<warning>
+⚠️ Spaces in directory names need escaping or quotes: \`cd My\\ Documents\` or \`cd "My Documents"\`
+</warning>
+
+### Practice Exercises
+
+1. **Navigate challenge**: From your home directory, navigate to \`/var/log\`, then use \`cd -\` to return. Use \`pushd\` and \`popd\` to switch between 3 directories.
+2. **Path practice**: Navigate to a deep directory using an absolute path. Then navigate to the same place using a relative path. Verify with \`pwd\`.
+3. **Tab completion**: Practice tab completion by typing partial directory names and pressing Tab. Try double-Tab to see multiple options.
+4. **Speed drill**: Navigate to /etc, /var/log, /tmp, /home, and back to your home directory — all within 30 seconds using shortcuts.
           `
         }
       ]
@@ -323,7 +344,9 @@ $ mv sourcedir/ /new/location/
 $ mv -i source.txt dest.txt
 \`\`\`
 
-> 💡 **Tip:** Unlike Windows, Linux has no "rename" command - just use \`mv\`!
+<tip>
+💡 Unlike Windows, Linux has no "rename" command — just use \`mv\`!
+</tip>
 
 ## Viewing File Contents
 
@@ -345,7 +368,16 @@ $ tail file.txt        # last 10 lines
 $ tail -f logfile.txt  # follow updates live
 \`\`\`
 
-> ⚠️ **Warning:** Be careful with \`mv\` - there's no undo! Use \`-i\` flag when unsure.
+<warning>
+⚠️ Be careful with \`mv\` — there's no undo! Use the \`-i\` flag when unsure.
+</warning>
+
+### Practice Exercises
+
+1. **File creation**: Create a directory structure: \`project/src/components/\` and \`project/tests/\` in one command using \`mkdir -p\`.
+2. **Copy and move**: Create 3 files, copy them to a new directory with \`cp\`, then rename one using \`mv\`.
+3. **View files**: Create a file with 100 lines (\`seq 1 100 > numbers.txt\`). Practice viewing with \`head -20\`, \`tail -20\`, and \`less\`.
+4. **Append content**: Use \`echo\` with \`>>\` to build a file line by line. Then use \`cat\` to view the result.
           `
         },
         {
@@ -384,7 +416,9 @@ $ rm -v file.txt
 removed 'file.txt'
 \`\`\`
 
-> ⚠️ **DANGER:** \`rm -rf /\` will destroy your entire system! NEVER run this!
+<warning>
+⚠️ \`rm -rf /\` will destroy your entire system! NEVER run this!
+</warning>
 
 ## Safer Alternatives
 
@@ -486,7 +520,16 @@ $ locate filename
 $ locate -i FILENAME
 \`\`\`
 
-> 💡 **Tip:** Use \`find\` for precise, current results. Use \`locate\` for quick searches when the database is fresh.
+<tip>
+💡 Use \`find\` for precise, current results. Use \`locate\` for quick searches when the database is fresh.
+</tip>
+
+### Practice Exercises
+
+1. **Find by name**: Find all \`.txt\` files in your home directory recursively.
+2. **Find by size**: Find all files larger than 10MB in \`/var\`. Then find all empty files in your home directory.
+3. **Find with actions**: Find all \`.log\` files in \`/tmp\` and delete them (use \`-delete\` or \`-exec rm\`).
+4. **Complex find**: Find all \`.js\` or \`.ts\` files modified in the last 7 days, excluding \`node_modules\`.
           `
         }
       ]
@@ -602,9 +645,20 @@ $ chmod +t /shared/
 $ chmod 1777 /shared/
 \`\`\`
 
-> 💡 **Tip:** The sticky bit on /tmp prevents users from deleting each other's files!
+<tip>
+💡 The sticky bit on /tmp prevents users from deleting each other's files!
+</tip>
 
-> ⚠️ **Security Warning:** Avoid 777 permissions - it allows anyone to do anything!
+<warning>
+⚠️ Avoid 777 permissions — it allows anyone to do anything with your files!
+</warning>
+
+### Practice Exercises
+
+1. **Read permissions**: Run \`ls -l\` on several files and decode the permission string for each.
+2. **Set permissions**: Create a script file. Set it to owner-executable using both numeric (\`chmod 755\`) and symbolic (\`chmod u+x\`) modes.
+3. **Test access**: Create a file as your user, remove read permission for others, then try to read it as a different user (or test with group permissions).
+4. **Private file**: Create a file with 600 permissions. Verify that only you can read and write it.
           `
         },
         {
@@ -744,9 +798,20 @@ u=rwx,g=rx,o=
 | Web files | \`chown www-data:www-data\` |
 | Scripts | \`chmod 755 script.sh\` |
 
-> 💡 **Tip:** Add yourself to necessary groups and log out/in for changes to take effect.
+<tip>
+💡 Add yourself to necessary groups and log out/in for changes to take effect.
+</tip>
 
-> ⚠️ **Warning:** Only root can change file ownership. You need sudo!
+<warning>
+⚠️ Only root can change file ownership. You need sudo!
+</warning>
+
+### Practice Exercises
+
+1. **Check your groups**: Run \`groups\` to see your group memberships. Run \`id\` for detailed user/group info.
+2. **Change ownership**: Create a file, check its owner with \`ls -l\`, then change the group using \`chgrp\`.
+3. **Shared directory**: Create a directory for a group with setgid bit. Verify that new files inherit the group ownership.
+4. **Umask practice**: Check your current umask. Create a file and directory — verify their permissions match the umask calculation.
           `
         }
       ]
@@ -887,7 +952,16 @@ $ cat /var/log/syslog | grep -i error
 $ grep "error" log.txt | grep -v "timeout" | grep "server"
 \`\`\`
 
-> 💡 **Tip:** Use \`grep -o\` to show only the matching part, not the whole line!
+<tip>
+💡 Use \`grep -o\` to show only the matching part, not the whole line!
+</tip>
+
+### Practice Exercises
+
+1. **Basic grep**: Search for "error" (case-insensitive) in system logs: \`grep -i "error" /var/log/syslog\`.
+2. **Regex practice**: Use grep to find lines starting with a number, lines ending with a period, and lines containing an email address pattern.
+3. **Context search**: Search for "failed" in a log file and show 3 lines before and after each match using \`-C 3\`.
+4. **Pipeline mastery**: Use \`ps aux | grep\` to find specific processes. Then use \`history | grep\` to find past commands.
           `
         },
         {
@@ -1039,7 +1113,16 @@ $ awk '{a[$1]++} END {for (k in a) print k, a[k]}' file.txt
 $ awk '{gsub(/old/, "new"); print}' file.txt > tmp && mv tmp file.txt
 \`\`\`
 
-> 💡 **Tip:** Use \`sed\` for simple substitutions, \`awk\` for column-based processing!
+<tip>
+💡 Use \`sed\` for simple substitutions, \`awk\` for column-based processing!
+</tip>
+
+### Practice Exercises
+
+1. **sed substitution**: Create a file with "Hello World" repeated 5 times. Use sed to replace "World" with "Linux" globally.
+2. **sed line operations**: Use sed to delete the first 3 lines of a file, then to print only lines 5-10.
+3. **awk columns**: Use awk to print the first and last columns from \`ls -l\` output. Then print only the file sizes.
+4. **awk calculation**: Use awk on \`ls -l\` to sum all file sizes: \`ls -l | awk '{sum += $5} END {print sum}'\`.
           `
         }
       ]
@@ -1222,7 +1305,16 @@ log "Starting backup..."
 log "Backup complete!"
 \`\`\`
 
-> 💡 **Tip:** Always use \`set -e\` to stop on errors and \`set -u\` to catch typos!
+<tip>
+💡 Always use \`set -e\` to stop on errors and \`set -u\` to catch typos in variable names!
+</tip>
+
+### Practice Exercises
+
+1. **First script**: Write a script that takes your name as an argument and prints "Hello, [name]! Today is [date]."
+2. **Variables**: Write a script that stores the current date, hostname, and username in variables, then prints a formatted system summary.
+3. **User input**: Write a script that asks for a filename, checks if it exists (\`-f\`), and displays its contents or an error message.
+4. **Error handling**: Write a script with \`set -e\` that tries to cd to a non-existent directory — observe how it exits on error.
           `
         },
         {
@@ -1454,7 +1546,16 @@ if ! command -v git &> /dev/null; then
 fi
 \`\`\`
 
-> 💡 **Tip:** Always quote variables: \`"$var"\` prevents word splitting issues!
+<tip>
+💡 Always quote variables: \`"$var"\` prevents word splitting issues!
+</tip>
+
+### Practice Exercises
+
+1. **If statements**: Write a script that checks if a number (argument) is positive, negative, or zero.
+2. **For loop**: Write a script that loops through all \`.txt\` files in a directory and prints their line counts.
+3. **While loop**: Write a script that reads a file line by line and counts the total lines.
+4. **Functions**: Write a script with a \`backup()\` function that copies a file to a \`.bak\` version. Call it with different filenames.
           `
         }
       ]
@@ -1612,9 +1713,20 @@ $ cat /proc/loadavg
 0.50 0.35 0.25 1/256 12345
 \`\`\`
 
-> 💡 **Tip:** Load average should typically stay below your CPU core count. Use \`nproc\` to check cores.
+<tip>
+💡 Load average should typically stay below your CPU core count. Use \`nproc\` to check cores.
+</tip>
 
-> ⚠️ **Warning:** High load (>2x cores) indicates system stress. Investigate with top/htop.
+<warning>
+⚠️ High load (>2x cores) indicates system stress. Investigate with top/htop.
+</warning>
+
+### Practice Exercises
+
+1. **Explore processes**: Run \`ps aux\` and identify the top 5 CPU-consuming processes. Then do the same for memory.
+2. **Use top**: Open \`top\`, press \`M\` to sort by memory, then \`P\` for CPU. Practice killing a process with \`k\`.
+3. **Process tree**: Run \`ps auxf\` or \`pstree\` to see the process hierarchy. Find the init/systemd process at the top.
+4. **Load average**: Check your system's load average with \`uptime\`. Compare it to the number of CPU cores (\`nproc\`). Is your system stressed?
           `
         },
         {
@@ -1785,9 +1897,20 @@ $ wait $PID
 $ timeout 60 long_command
 \`\`\`
 
-> 💡 **Tip:** Always try \`kill\` (SIGTERM) before \`kill -9\` (SIGKILL) to allow graceful shutdown.
+<tip>
+💡 Always try \`kill\` (SIGTERM) before \`kill -9\` (SIGKILL) to allow graceful shutdown.
+</tip>
 
-> ⚠️ **Warning:** \`kill -9\` doesn't allow cleanup - use only as last resort!
+<warning>
+⚠️ \`kill -9\` doesn't allow cleanup — use only as last resort!
+</warning>
+
+### Practice Exercises
+
+1. **Background jobs**: Start a long-running command (\`sleep 300\`), send it to background with \`&\`, list jobs, bring to foreground, then kill it.
+2. **Signal practice**: Start a \`sleep 1000\` process. Send SIGTERM, then SIGKILL. Observe the difference.
+3. **Service management**: List all running services with \`systemctl\`. Check the status of \`sshd\` or \`nginx\`.
+4. **Screen/tmux**: Start a screen or tmux session, run a command, detach, list sessions, and reattach.
           `
         }
       ]
@@ -1972,7 +2095,16 @@ $ curl -O https://example.com/file.zip
 $ curl -o myfile.zip https://example.com/file.zip
 \`\`\`
 
-> 💡 **Tip:** Use \`mtr\` instead of \`traceroute\` - it combines ping and traceroute with real-time updates!
+<tip>
+💡 Use \`mtr\` instead of \`traceroute\` — it combines ping and traceroute with real-time updates!
+</tip>
+
+### Practice Exercises
+
+1. **Connectivity check**: Ping google.com with 5 packets. Then use \`traceroute\` to see the network path.
+2. **DNS lookup**: Use \`dig google.com\` to find IP addresses. Try \`dig -x 8.8.8.8\` for reverse lookup.
+3. **Port scanning**: Use \`ss -tlnp\` to find all listening ports on your system. Identify which services are running.
+4. **HTTP testing**: Use \`curl -I\` to check the headers of 3 different websites. Note the HTTP status codes and server types.
           `
         },
         {
@@ -2142,9 +2274,20 @@ PasswordAuthentication no
 PermitRootLogin no
 \`\`\`
 
-> 💡 **Tip:** Use \`rsync\` over \`scp\` for large transfers - it's faster and can resume!
+<tip>
+💡 Use \`rsync\` over \`scp\` for large transfers — it's faster and can resume!
+</tip>
 
-> ⚠️ **Security:** Never share private keys. Use \`ssh-keygen -p\` to add passphrase.
+<warning>
+⚠️ Never share private SSH keys. Use \`ssh-keygen -p\` to add a passphrase for extra protection.
+</warning>
+
+### Practice Exercises
+
+1. **SSH key setup**: Generate an ED25519 SSH key pair. Examine the public and private key files.
+2. **SSH config**: Create an \`~/.ssh/config\` file with at least one host alias. Test connecting using the alias.
+3. **File transfer**: Use \`scp\` to copy a file to a remote server (or between directories locally). Then do the same with \`rsync\`.
+4. **SSH tunnel**: Set up a local port forward to access a remote service (e.g., a database) through SSH.
           `
         }
       ]
@@ -2299,9 +2442,20 @@ $ apt-mark showmanual
 $ sudo apt --fix-broken install
 \`\`\`
 
-> 💡 **Tip:** Run \`sudo apt update\` before installing anything to ensure latest package info!
+<tip>
+💡 Run \`sudo apt update\` before installing anything to ensure latest package info!
+</tip>
 
-> ⚠️ **Warning:** Be careful with PPAs - they're third-party and may conflict with system packages.
+<warning>
+⚠️ Be careful with PPAs — they're third-party and may conflict with system packages.
+</warning>
+
+### Practice Exercises
+
+1. **Update system**: Run a full system update with \`sudo apt update && sudo apt upgrade\`.
+2. **Install and remove**: Install a package (e.g., \`tree\`), verify it works, then remove it with \`apt remove\` and clean up with \`autoremove\`.
+3. **Package info**: Use \`apt show\` to get info about a package before installing. Use \`dpkg -L\` to list installed files.
+4. **Find packages**: Search for "web server" packages using \`apt search\`. Compare the results.
           `
         },
         {
@@ -2499,9 +2653,20 @@ $ sudo dnf module reset nodejs
 | Clean | apt clean | dnf clean all |
 | List installed | apt list --installed | dnf list installed |
 
-> 💡 **Tip:** EPEL repository provides many additional packages for RHEL/CentOS!
+<tip>
+💡 EPEL repository provides many additional packages for RHEL/CentOS!
+</tip>
 
-> ⚠️ **Warning:** On production servers, test updates in staging first and consider using \`dnf history rollback\` for recovery.
+<warning>
+⚠️ On production servers, test updates in staging first and consider using \`dnf history rollback\` for recovery.
+</warning>
+
+### Practice Exercises
+
+1. **Compare package managers**: If you have access to both Ubuntu and CentOS systems, install the same package on both and compare the commands.
+2. **Repository management**: List all configured repositories. On Ubuntu, add and remove a PPA. On CentOS, enable/disable EPEL.
+3. **Package history**: On a CentOS/RHEL system, use \`dnf history\` to review recent package operations.
+4. **Group install**: On CentOS, list available package groups with \`dnf group list\` and install "Development Tools".
           `
         }
       ]
