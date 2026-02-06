@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { courseData } from './data/courseData';
 import {
   Menu, X, ChevronRight, BookOpen, Clock, CheckCircle2,
-  Lightbulb, AlertTriangle, Play, Home, Smartphone
+  Lightbulb, AlertTriangle, Play, Home, Terminal
 } from 'lucide-react';
 import './index.css';
 
@@ -13,14 +13,14 @@ function App() {
   const [completedLessons, setCompletedLessons] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem('mobile-learning-progress');
+    const saved = localStorage.getItem('linux-learning-progress');
     if (saved) setCompletedLessons(JSON.parse(saved));
   }, []);
 
   const saveProgress = (lessonId) => {
     const updated = [...completedLessons, lessonId];
     setCompletedLessons(updated);
-    localStorage.setItem('mobile-learning-progress', JSON.stringify(updated));
+    localStorage.setItem('linux-learning-progress', JSON.stringify(updated));
   };
 
   const totalLessons = courseData.chapters.reduce((acc, ch) => acc + ch.lessons.length, 0);
@@ -149,7 +149,7 @@ function App() {
                 {rows.map((row, ri) => (
                   <tr key={ri}>{row.map((cell, ci) => (
                     <td key={ci} style={{ padding: '12px 16px', borderBottom: '1px solid var(--border-color)', color: 'var(--text-secondary)' }}>
-                      <span dangerouslySetInnerHTML={{ __html: cell.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text-primary)">$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(139,92,246,0.1);padding:2px 6px;border-radius:4px;font-size:13px">$1</code>') }} />
+                      <span dangerouslySetInnerHTML={{ __html: cell.replace(/\*\*(.*?)\*\*/g, '<strong style="color:var(--text-primary)">$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(168,85,247,0.1);padding:2px 6px;border-radius:4px;font-size:13px">$1</code>') }} />
                     </td>
                   ))}</tr>
                 ))}
@@ -165,7 +165,7 @@ function App() {
         while (i < lines.length && (lines[i].startsWith('- ') || lines[i].startsWith('* '))) { items.push(lines[i].slice(2)); i++; }
         elements.push(
           <ul key={`ul-${i}`}>{items.map((item, idx) => (
-            <li key={idx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(139,92,246,0.1);padding:2px 6px;border-radius:4px">$1</code>') }} />
+            <li key={idx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(168,85,247,0.1);padding:2px 6px;border-radius:4px">$1</code>') }} />
           ))}</ul>
         );
         continue;
@@ -176,7 +176,7 @@ function App() {
         while (i < lines.length && /^\d+\. /.test(lines[i])) { items.push(lines[i].replace(/^\d+\. /, '')); i++; }
         elements.push(
           <ol key={`ol-${i}`}>{items.map((item, idx) => (
-            <li key={idx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(139,92,246,0.1);padding:2px 6px;border-radius:4px">$1</code>') }} />
+            <li key={idx} dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/`(.*?)`/g, '<code style="background:rgba(168,85,247,0.1);padding:2px 6px;border-radius:4px">$1</code>') }} />
           ))}</ol>
         );
         continue;
@@ -186,7 +186,7 @@ function App() {
         elements.push(
           <p key={`p-${i}`} dangerouslySetInnerHTML={{ __html: line
             .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-            .replace(/`(.*?)`/g, '<code style="background:rgba(139,92,246,0.1);padding:2px 6px;border-radius:4px;font-family:JetBrains Mono,monospace;font-size:14px">$1</code>')
+            .replace(/`(.*?)`/g, '<code style="background:rgba(168,85,247,0.1);padding:2px 6px;border-radius:4px;font-family:JetBrains Mono,monospace;font-size:14px">$1</code>')
             .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--accent-cyan)">$1</a>')
           }} />
         );
@@ -212,8 +212,8 @@ function App() {
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
-          <div className="sidebar-logo"><Smartphone size={24} /></div>
-          <span className="sidebar-title">Mobile Dev</span>
+          <div className="sidebar-logo"><Terminal size={24} /></div>
+          <span className="sidebar-title">Linux CLI</span>
         </div>
 
         <nav className="sidebar-nav">
@@ -246,9 +246,9 @@ function App() {
         {currentView === 'home' && (
           <>
             <div className="hero">
-              <div className="hero-badge"><Smartphone size={16} /><span>React Native Course</span></div>
-              <h1 className="hero-title">Learn<br /><span>Mobile Development</span></h1>
-              <p className="hero-subtitle">Build beautiful cross-platform mobile apps for iOS and Android using React Native. From zero to app store!</p>
+              <div className="hero-badge"><Terminal size={16} /><span>Linux Command Line Course</span></div>
+              <h1 className="hero-title">Master the<br /><span>Linux Terminal</span></h1>
+              <p className="hero-subtitle">Navigate filesystems, manage processes, write bash scripts, and become a command line power user!</p>
               <button className="nav-button primary" onClick={() => navigateToLesson(courseData.chapters[0].lessons[0])} style={{ margin: '0 auto' }}>
                 <Play size={20} />Start Learning
               </button>
@@ -276,10 +276,10 @@ function App() {
 
             <div className="glass-card" style={{ textAlign: 'center' }}>
               <h3 style={{ marginBottom: '16px', fontSize: '20px' }}>What You'll Learn</h3>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>By the end, you'll be able to build and publish your own mobile apps:</p>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: '24px' }}>By the end, you'll be comfortable in any Linux environment:</p>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '16px' }}>
-                {['React Native Basics', 'UI Components', 'Navigation', 'State Management', 'API Integration', 'App Store Deploy'].map((item) => (
-                  <div key={item} style={{ padding: '16px', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
+                {['File Navigation', 'Permissions', 'Bash Scripting', 'Processes', 'Package Mgmt', 'Networking'].map((item) => (
+                  <div key={item} style={{ padding: '16px', background: 'rgba(168, 85, 247, 0.1)', borderRadius: '12px', border: '1px solid rgba(168, 85, 247, 0.2)' }}>
                     <CheckCircle2 size={24} style={{ color: 'var(--accent-primary)', marginBottom: '8px' }} />
                     <div style={{ fontWeight: '500' }}>{item}</div>
                   </div>
